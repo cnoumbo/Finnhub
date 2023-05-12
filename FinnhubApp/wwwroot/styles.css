@@ -1,0 +1,15 @@
+﻿body {
+    background-color: #F7F7F7;
+}
+.trading-title {
+    color: #3E88C1;
+    font-size: 1em;
+}
+.price-stock {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.devise {
+    color: #929292;
+}

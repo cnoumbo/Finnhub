@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/StyleSheet.css" rel="stylesheet" />
+    <link href="~/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="page-content">
+        <nav>
+            <h1 class="navbar-brand">
+                <i class="fa-solid fa-money-bill-trend-up"></i> Stocks
+            </h1>
+        </nav>
+        @RenderBody()
+    </div>
+    <script>
+        let symbol = document.querySelector("#stock-symbol").textContent;
+
+        let socket = new WebSocket("wss://ws.finnhub.io?token=ch3qfvhr01qrc1e705p0ch3qfvhr01qrc1e705pg");
+
+        socket.addEventListener("open", function(event) {
+            socket.send(JSON.stringify({
+                'type': 'subscribe',
+                'symbol': symbol
+            }));
+            console.log("Connection established");
+        });
+
+        socket.addEventListener('message', function (event) {
+            let response = JSON.parse(event.data);
+            if (response.type === "trade") {
+                document.querySelector('.stock-value').textContent = response.data[0].p;
+            }
+        });
+
+        // Unsubscribe
+        let unsubscribe = function (symbol) {
+            socket.send(JSON.stringify({ 'type': 'unsubscribe', 'symbol': symbol }));
+        }
+
+        // prevent windows unload and unsuscribe
+        let preventClose = function (e) {
+            e.preventDefault();
+            unsubscribe(symbol);
+            return "";
+        }
+        window.addEventListener('beforeunload', preventClose, true);
+    </script>
+</body>
+</html>
+

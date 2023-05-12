@@ -1,0 +1,15 @@
+﻿@model FinnhubApp.ViewModels.StockTrade
+@{
+    Layout = "~/Views/Shared/_layout.cshtml";
+    ViewBag.Title = "Finnhub Home";
+}
+
+<div class="box">
+    <h1 class="trading-title">
+        @Model.StockName (<span id="stock-symbol">@Model.StockSymbol</span>)
+    </h1>
+    <div class="price-stock">
+        <span class="devise">$</span>
+        <span class="stock-value">@Model.Price</span>
+    </div>
+</div>
