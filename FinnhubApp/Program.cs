@@ -1,6 +1,6 @@
 ﻿using FinnhubApp.Models;
-using FinnhubApp.Services;
-using FinnhubApp.ServicesContract;
+using ServiceContracts;
+using Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

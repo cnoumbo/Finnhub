@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json;
-using FinnhubApp.ServicesContract;
 using Microsoft.Extensions.Configuration;
+using ServiceContracts;
 
 namespace Services
 {

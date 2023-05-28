@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using FinnhubApp.Models;
-using FinnhubApp.ServicesContract;
 using FinnhubApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
+using ServiceContracts;
 
 namespace FinnhubApp.Controllers
 {

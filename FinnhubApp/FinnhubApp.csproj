@@ -8,8 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Services\" />
-    <None Remove="ServicesContract\" />
     <None Remove="ViewModels\" />
     <None Remove="Models\" />
     <None Remove="Controllers\" />
@@ -18,8 +16,6 @@
     <None Remove="Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Services\" />
-    <Folder Include="ServicesContract\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Models\" />
     <Folder Include="Controllers\" />
@@ -36,6 +32,9 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\Services\Services.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
