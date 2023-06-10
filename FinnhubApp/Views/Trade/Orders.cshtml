@@ -1,0 +1,41 @@
+﻿@using ServiceContracts.DTO
+
+@{
+    ViewBag.Title = "Finnhub Orders";
+}
+
+<div class="nav-links">
+    <ul>
+        <li><a href="~/trade/index">Trade</a></li>
+        <li><a href="~/trade/orders" class="active">Orders</a></li>
+    </ul>
+    <div class="breadcrumb">
+        <span>Stocks</span>
+        &rtrif;
+        <span>Orders</span>
+    </div>
+</div>
+<div class="flex">
+    <div class="flex-1">
+        <span>Buy Orders</span>
+        @foreach(BuyOrderResponse item in ViewBag.BuyOrders) {
+            <div class="trade-item">
+                <h2 class="trade-item__title">@item.StockName (@item.StockSymbol)</h2>
+                <p class="trade-item__small-content"><span>@item.Quantity</span> shares at <span>$@item.Price</span></p>
+                <p class="trade-item__small-content">Trade Amount: <span>@item.TradeAmount.ToString("#.00")</span></p>
+                <p class="trade-item__date"> @item.DateAndTimeOfOrder.ToString("dd MMMM yyyy HH:mm:ss tt")</p>
+            </div>
+        }
+    </div>
+    <div class="flex-1">
+        <span>Sell Orders</span>
+        @foreach(SellOrderResponse item in ViewBag.SellOrders) {
+            <div class="trade-item">
+                <h2 class="trade-item__title">@item.StockName (@item.StockSymbol)</h2>
+                <p class="trade-item__small-content"><span>@item.Quantity</span> shares at <span>$@item.Price</span></p>
+                <p class="trade-item__small-content">Trade Amount: <span>$@item.TradeAmount.ToString("#.00")</span></p>
+                <p class="trade-item__date"> @item.DateAndTimeOfOrder.ToString("dd MMMM yyyy HH:mm:ss tt")</p>
+            </div>
+        }
+    </div>
+</div>

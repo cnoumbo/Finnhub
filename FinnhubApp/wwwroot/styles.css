@@ -1,15 +1,161 @@
 ﻿body {
     background-color: #F7F7F7;
+    color: #333;
 }
 .trading-title {
     color: #3E88C1;
-    font-size: 1em;
+    font-size: 1.5em;
 }
 .price-stock {
-    font-size: 1.3em;
+    font-size: 3em;
     font-weight: 700;
 }
-
 .devise {
     color: #929292;
 }
+.mt {
+    margin-top: 10px;
+}
+.mr {
+    margin-right: 10px;
+}
+.ml {
+    margin-left: 10px;
+}
+
+/* components */
+.btn, a.btn {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f7f7f8;
+    color: #7d7c83;
+    text-decoration: none;
+}
+input {
+    padding: 0 10px;
+    border-style: solid;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.btn-blue, a.btn-blue {
+    background-color: #2676BF;
+    border-color: #2676BF;
+    color: #fff;
+}
+.btn-red, a.btn-red {
+    background-color: #ce1632;
+    border-color: #ce1632;
+    color: #fff;
+}
+.btn-green, a.btn-green {
+    background-color: #0b9e28;
+    border-color: #0b9e28;
+    color: #fff;
+}
+
+/* Trade Items */
+.trade-item {
+    border-bottom: 2px solid #7d7c83;
+    color: #7d7c83;
+    margin-bottom: 15px;
+}
+.trade-item p {
+    margin-bottom: 12px;
+}
+.trade-item__title {
+    font-weight: 700;
+    font-size: 16px;
+    color: #000;
+    margin-top: 16px
+}
+.trade-item__date {
+    font-size: 14px;
+}
+.trade-item__small-content {
+    font-weight: 700;
+    font-size: 12px;
+}
+.trade-item__small-content span {
+    color:#000;
+}
+
+/* NavBar */
+.navbar {
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar-search {
+    justify-content: flex-end;
+    align-items: center;
+}
+.navbar-search .settings {
+    color: #000;
+}
+.navbar-search input {
+    border-radius: 15px;
+}
+.nav-links {
+    padding: 10px;
+    margin-top: 10px;
+}
+.nav-links ul li {
+    display: inline-block;
+}
+.nav-links ul li a {
+    text-decoration: none;
+    color: #2676BF;
+    position: relative;
+}
+.nav-links ul li a.active::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    bottom: -2px;
+    height: 1px;
+    width: 50%; /* or 100px */
+    border-bottom: 2px solid #7d7c83;
+}
+.nav-links .breadcrumb {
+    margin-top: 10px;
+    color: #7d7c83;
+    font-size: 14px;
+}
+
+/* Content */
+.stock-details {
+    border-right: 2px solid #d3d1d1;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.stock-order h2 {
+    font-size: .8em;
+    color: #929292;
+    margin: 0;
+}
+.stock-order div label {
+    font-size: 14px;
+    display: block;
+}
+.stock-order div input {
+    width: 100px;
+    height: 30px;
+}
+
+.errors p {
+    font-size: 10px;
+    color: #ce1632;
+}
+

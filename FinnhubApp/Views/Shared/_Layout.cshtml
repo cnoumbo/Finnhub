@@ -10,16 +10,23 @@
 </head>
 <body>
     <div class="page-content">
-        <nav>
+        <nav class="flex navbar">
             <h1 class="navbar-brand">
                 <i class="fa-solid fa-money-bill-trend-up"></i> Stocks
             </h1>
+            <section class="navbar-search flex flex-1">
+                <form action="#" method="get">
+                    <input type="text" name="seach" placeholder="Search Stocks" />
+                </form>
+                <a href="#" class="settings" title="settings"><i class="fa-solid fa-gear"></i></a>
+                <a href="#" title="Login" class="ml btn btn-blue">Login</a>
+            </section>
         </nav>
         @RenderBody()
     </div>
     <script>
         let symbol = document.querySelector("#stock-symbol").textContent;
-
+        let CurrentStockValue = document.querySelector("CurrentStockValue");
         let socket = new WebSocket("wss://ws.finnhub.io?token=ch3qfvhr01qrc1e705p0ch3qfvhr01qrc1e705pg");
 
         socket.addEventListener("open", function(event) {
@@ -34,6 +41,7 @@
             let response = JSON.parse(event.data);
             if (response.type === "trade") {
                 document.querySelector('.stock-value').textContent = response.data[0].p;
+                CurrentStockValue.value = response.data[0].p;
             }
         });
 

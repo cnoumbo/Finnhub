@@ -1,15 +1,51 @@
 ﻿@model FinnhubApp.ViewModels.StockTrade
-@{
-    Layout = "~/Views/Shared/_layout.cshtml";
+@{    
     ViewBag.Title = "Finnhub Home";
 }
-
-<div class="box">
-    <h1 class="trading-title">
-        @Model.StockName (<span id="stock-symbol">@Model.StockSymbol</span>)
-    </h1>
-    <div class="price-stock">
-        <span class="devise">$</span>
-        <span class="stock-value">@Model.Price</span>
+<div class="nav-links">
+    <ul>
+        <li><a href="~/trade/index" class="active">Trade</a></li>
+        <li><a href="~/trade/orders">Orders</a></li>
+    </ul>
+    <div class="breadcrumb">
+        <span>Stocks</span>
+        &rtrif;
+        <span>Microsoft Corp</span>
     </div>
+</div>
+<div class="box flex-borderless">
+    <div class="stock-details flex-2">
+        <h1 class="trading-title">
+            @Model.StockName (<span id="stock-symbol">@Model.StockSymbol</span>)
+        </h1>
+        <div class="price-stock">
+            <span class="devise">$</span>
+            <span class="stock-value">@Model.Price</span>
+        </div>
+    </div>
+    <div class="stock-order flex-1">
+        <h2 class="mt">New Order</h2>
+        <form action="~/Trade/SellOrder" method="post">
+            <div class="mt">
+                <label for="Quantity">Quantity : </label>
+                <input class="mt" type="text" name="Quantity" id="OrderQty" value="@ViewBag.CurrentOrderQuantity" />
+                <input type="hidden" name="Price" id="CurrentStockValue" value="@Model.Price">
+                <input type="hidden" name="StockSymbol" value="@Model.StockSymbol">
+                <input type="hidden" name="StockName" value="@Model.StockName">
+            </div>
+            <div class="mt">
+                <button type="submit" class="mr btn btn-red"> <i class="fa-solid fa-arrow-down"></i> Sell</button>
+                <button type="submit" formaction="~/Trade/BuyOrder" class="btn btn-green"> <i class="fa-solid fa-arrow-up"></i> Buy</button>
+            </div>
+            <div class="errors">
+                @{
+                    if(ViewBag.Errors is not null) {
+                        foreach(string error in ViewBag.Errors) {
+                            <p>@error</p>
+                        }
+                    }
+                }
+            </div>
+        </form>        
+    </div>    
 </div>
