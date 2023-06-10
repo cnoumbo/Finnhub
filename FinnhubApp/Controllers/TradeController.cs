@@ -19,6 +19,8 @@ namespace FinnhubApp.Controllers
         private readonly IOptions<TradingOptions> _options;
         private readonly IFinnhubService _finnhubService;
         private readonly IStocksService _stockService;
+
+        // Constructor
         public TradeController(IOptions<TradingOptions> options, IFinnhubService finnhubService, IStocksService stocksService)
         {
             _options = options;
