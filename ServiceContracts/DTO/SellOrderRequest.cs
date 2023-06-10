@@ -13,6 +13,8 @@ namespace ServiceContracts.DTO
         public string StockName { get; set; }
 
         public DateTime DateAndTimeOfOrder { get; set; }
+        
+        [Range(1, 100000)]
         public uint Quantity { get; set; }
 
         [Range(1, 10000)]
