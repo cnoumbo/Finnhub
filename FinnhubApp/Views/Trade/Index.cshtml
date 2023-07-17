@@ -25,17 +25,17 @@
     </div>
     <div class="stock-order flex-1">
         <h2 class="mt">New Order</h2>
-        <form action="~/Trade/SellOrder" method="post">
+        <form asp-action="SellOrder" asp-controller="Trade" method="post">
             <div class="mt">
                 <label for="Quantity">Quantity : </label>
-                <input class="mt" type="text" name="Quantity" id="OrderQty" value="@ViewBag.CurrentOrderQuantity" />
-                <input type="hidden" name="Price" id="CurrentStockValue" value="@Model.Price">
-                <input type="hidden" name="StockSymbol" value="@Model.StockSymbol">
-                <input type="hidden" name="StockName" value="@Model.StockName">
+                <input class="mt" type="text" asp-for="Quantity" id="OrderQty" value="@ViewBag.CurrentOrderQuantity" />
+                <input type="hidden" asp-for="Price" id="CurrentStockValue">
+                <input type="hidden" asp-for="StockSymbol">
+                <input type="hidden" asp-for="StockName">
             </div>
             <div class="mt">
                 <button type="submit" class="mr btn btn-red"> <i class="fa-solid fa-arrow-down"></i> Sell</button>
-                <button type="submit" formaction="~/Trade/BuyOrder" class="btn btn-green"> <i class="fa-solid fa-arrow-up"></i> Buy</button>
+                <button type="submit" asp-controller="Trade" asp-action="BuyOrder"class="btn btn-green"> <i class="fa-solid fa-arrow-up"></i> Buy</button>
             </div>
             <div class="errors">
                 @{
