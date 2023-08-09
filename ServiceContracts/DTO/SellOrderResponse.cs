@@ -33,6 +33,11 @@ namespace ServiceContracts.DTO
             return StockSymbol.GetHashCode();
         }
 
+        public OrderResponse ToOrderResponse()
+        {
+            return new OrderResponse() { ID = this.SellOrderID, StockSymbol = this.StockSymbol, StockName = this.StockName, Price = this.Price, DateAndTimeOfOrder = this.DateAndTimeOfOrder, Quantity = this.Quantity, TradeAmount = this.Price * this.Quantity, Type = OrderType.SellOrder };
+        }
+
         public override string ToString()
         {
             return $"Sell Order ID: {SellOrderID}, Stock Symbol: {StockSymbol}, Stock Name: {StockName}, Date and Time of Sell Order: {DateAndTimeOfOrder.ToString("dd MMM yyyy hh:mm ss tt")}, Quantity: {Quantity}, Sell Price: {Price}, Trade Amount: {TradeAmount}";

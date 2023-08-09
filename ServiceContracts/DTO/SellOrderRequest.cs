@@ -12,8 +12,8 @@ namespace ServiceContracts.DTO
         [Required]
         public string StockName { get; set; }
 
-        public DateTime DateAndTimeOfOrder { get; set; }
-        
+        public DateTime DateAndTimeOfOrder { get; set; } = TimeZoneInfo.ConvertTimeToUtc(DateTime.Now);
+
         [Range(1, 100000)]
         public uint Quantity { get; set; }
 
@@ -31,7 +31,7 @@ namespace ServiceContracts.DTO
 
             // Date of order shohuld be less than Jan 01, 2000
             if (DateAndTimeOfOrder < Convert.ToDateTime("2000-01-01"))
-                results.Add(new ValidationResult("Order Date should can't be less than 2000-01-01"));
+                results.Add(new ValidationResult("Order Date can't be less than 2000-01-01"));
 
             return results;
         }

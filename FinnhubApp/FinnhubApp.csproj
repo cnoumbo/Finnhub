@@ -23,12 +23,19 @@
     <Folder Include="Views\Trade\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\Rotativa\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.9">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Rotativa.AspNetCore" Version="1.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\Rotativa\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ServiceContracts\ServiceContracts.csproj">

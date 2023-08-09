@@ -39,6 +39,11 @@ namespace ServiceContracts.DTO
         {
             return $"Buy Order ID: {BuyOrderID}, Stock Symbol: {StockSymbol}, Stock Name: {StockName}, Date and Time of Buy Order: {DateAndTimeOfOrder.ToString("dd MMM yyyy hh:mm ss tt")}, Quantity: {Quantity}, Buy Price: {Price}, Trade Amount: {TradeAmount}";
         }
+
+        public OrderResponse ToOrderResponse()
+        {
+            return new OrderResponse() { ID = this.BuyOrderID, StockSymbol = this.StockSymbol, StockName = this.StockName, Price = this.Price, DateAndTimeOfOrder = this.DateAndTimeOfOrder, Quantity = this.Quantity, TradeAmount = this.Price * this.Quantity, Type = OrderType.BuyOrder };
+        }
     }
 
     public static class BuyOrderExtensions

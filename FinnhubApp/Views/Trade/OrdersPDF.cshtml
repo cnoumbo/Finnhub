@@ -1,0 +1,37 @@
+﻿@using ServiceContracts.DTO
+
+@model IEnumerable<OrderResponse>
+
+@{
+    Layout = null;
+}
+
+<link href="@("http://"+ Context.Request.Host.ToString() + "/StyleSheet.css")" rel="stylesheet" />
+
+<h1>Orders</h1>
+
+<table class="table w-100 mt">
+    <thead>
+        <tr>
+            <th>Date and Time</th>
+            <th>Stock</th>
+            <th>Order Type</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>trade Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.DateAndTimeOfOrder.ToString("dd MMMM yyyy hh:mm:ss tt")</td>
+                <td>@item.StockName (@item.StockSymbol)</td>
+                <td>@item.Type.ToString()</td>
+                <td>@item.Quantity</td>
+                <td>$@item.Price</td>
+                <td>@item.TradeAmount</td>
+            </tr>
+        }
+    </tbody>
+</table>

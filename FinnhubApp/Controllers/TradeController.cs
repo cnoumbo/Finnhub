@@ -10,6 +10,7 @@ using Microsoft.Extensions.Options;
 using ServiceContracts;
 using ServiceContracts.DTO;
 using Services.Helpers;
+using Rotativa.AspNetCore;
 
 namespace FinnhubApp.Controllers
 {
@@ -57,10 +58,10 @@ namespace FinnhubApp.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public IActionResult Orders()
+        public async Task<IActionResult> Orders()
         {
-            ViewBag.SellOrders = _stockService.GetSellOrders();
-            ViewBag.BuyOrders = _stockService.GetBuyOrders();
+            ViewBag.SellOrders = await _stockService.GetSellOrders();
+            ViewBag.BuyOrders = await _stockService.GetBuyOrders();
 
             return View();
         }
@@ -69,11 +70,11 @@ namespace FinnhubApp.Controllers
         [Route("[action]")]
         public async Task<IActionResult> BuyOrder(BuyOrderRequest buyOrder)
         {
-            buyOrder.DateAndTimeOfOrder = DateTime.Now;
+            //buyOrder.DateAndTimeOfOrder = DateTime.Now;
 
             // Call required service to save the operation
             try {
-                _stockService.CreateBuyOrder(buyOrder);
+                await _stockService.CreateBuyOrder(buyOrder);
                 return RedirectToAction("Orders", "Trade");
             }
             catch (Exception ex) {
@@ -109,11 +110,11 @@ namespace FinnhubApp.Controllers
         [Route("[action]")]
         public async Task<IActionResult> SellOrder(SellOrderRequest sellOrder)
         {
-            sellOrder.DateAndTimeOfOrder = DateTime.Now;
+            //sellOrder.DateAndTimeOfOrder = DateTime.Now;
 
             // Call required service to save the operation
             try {
-                _stockService.CreateSellOrder(sellOrder);
+                await _stockService.CreateSellOrder(sellOrder);
                 return RedirectToAction("Orders", "Trade");
             }
             catch (Exception ex) {
@@ -143,6 +144,35 @@ namespace FinnhubApp.Controllers
 
                 return View("Index", stock);
             }
+        }
+
+        [HttpGet]
+        [Route("[action]")]
+        public async Task<IActionResult> OrdersPDF()
+        {
+            // Call required services
+            var sellOrders = await _stockService.GetSellOrders();
+            var buyOrders = await _stockService.GetBuyOrders();
+
+            // order list
+            List<OrderResponse> orders = new List<OrderResponse>();
+            foreach(var item in sellOrders)
+            {
+                orders.Add(item.ToOrderResponse());
+            }
+            foreach (var item in buyOrders)
+            {
+                orders.Add(item.ToOrderResponse());
+            }
+
+            var orderedOrders = orders.OrderByDescending(item => item.DateAndTimeOfOrder).ToList();
+
+            return new ViewAsPdf("OrdersPDF", orderedOrders, ViewData)
+            {
+                PageMargins = new Rotativa.AspNetCore.Options.Margins() { Top = 20, Bottom = 20, Left = 20, Right = 20 },
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Landscape,
+                PageSize = Rotativa.AspNetCore.Options.Size.A4
+            };
         }
     }
 }

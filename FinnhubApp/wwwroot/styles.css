@@ -16,11 +16,20 @@
 .mt {
     margin-top: 10px;
 }
+.mb {
+    margin-bottom: 10px;
+}
 .mr {
     margin-right: 10px;
 }
 .ml {
     margin-left: 10px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 0.8em;
+    color: #7d7c83;
 }
 
 /* components */

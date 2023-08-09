@@ -12,25 +12,25 @@ public interface IStocksService
     /// </summary>
     /// <param name="buyOrderRequest">BuyOrderRequest object</param>
     /// <returns></returns>
-    BuyOrderResponse CreateBuyOrder(BuyOrderRequest? buyOrderRequest);
+    Task<BuyOrderResponse> CreateBuyOrder(BuyOrderRequest? buyOrderRequest);
 
     /// <summary>
     /// 
     /// </summary>
     /// <param name="sellOrderRequest"></param>
     /// <returns></returns>
-    SellOrderResponse CreateSellOrder(SellOrderRequest? sellOrderRequest);
+    Task<SellOrderResponse> CreateSellOrder(SellOrderRequest? sellOrderRequest);
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    List<BuyOrderResponse> GetBuyOrders();
+    Task<List<BuyOrderResponse>> GetBuyOrders();
 
     /// <summary>
     /// 
     /// </summary>
     /// <returns></returns>
-    List<SellOrderResponse> GetSellOrders();
+    Task<List<SellOrderResponse>> GetSellOrders();
 }
 
